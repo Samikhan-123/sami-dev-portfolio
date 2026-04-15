@@ -31,6 +31,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "start": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
     "test": "react-scripts test",
