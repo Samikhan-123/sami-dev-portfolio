@@ -7,9 +7,19 @@ import BackgroundBeams from "../ui/BackgroundBeams";
 function Projects() {
   const projects = [
     {
+      title: "Personal Portfolio Website",
+      description:
+        "A modern developer portfolio built to showcase my work, skills, and projects. Designed with a focus on performance, clean UI, and smooth user experience, along with a fully functional contact system.",
+      imgPath: "/sami-portfolio.png",
+      ghLink: "https://github.com/Samikhan-123/sami-dev-portfolio",
+      demoLink: "https://samikhan-dev.vercel.app",
+      tags: ["React", "Tailwind", "Framer Motion", "EmailJS"],
+      featured: true,
+    },
+    {
       title: "ApnaKhata Financial Client",
       description:
-        "A sophisticated financial management interface designed for clarity and precision. Engineered with a focus on real-time data visualization and a seamless user journey, it empowers users to take full control of their financial flow through intuitive ledger management and interactive analytics.",
+        "A financial management web app focused on simplicity and usability. It helps users track transactions, manage records, and understand their financial flow through a clean and interactive interface.",
       imgPath: "/ApnaKhata.png",
       ghLink: "https://github.com/Samikhan-123/apnakhata-client",
       demoLink: "https://apnakhata.online",
@@ -17,13 +27,12 @@ function Projects() {
       featured: true,
     },
     {
-      title: "ApnaKhata Core Engine (Server)",
+      title: "ApnaKhata Backend System",
       description:
-        "The industrial-strength backbone of the ApnaKhata ecosystem. This robust financial engine handles complex transaction processing, automated Transaction Records, and multi-tenant security with enterprise-grade reliability, ensuring every cent is accounted for with absolute precision.",
+        "The backend system that powers the ApnaKhata platform. It handles data processing, authentication, and secure transaction management with a clean and scalable architecture.",
       imgPath: "/ApnaKhata-backend.png",
       ghLink: "https://github.com/Samikhan-123/apnakhata-server",
-      // demoLink: "https://apnakhata.online",
-      tags: ["Node.js", "Express", "Prisma", "PostgreSQL", "Zod"],
+      tags: ["Node.js", "Express", "Prisma", "PostgreSQL"],
       featured: false,
     },
   ];
@@ -34,21 +43,24 @@ function Projects() {
       <BackgroundBeams />
 
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div 
+        {/* HEADER */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-20"
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight uppercase">
-            Signature <span className="text-gradient"> Solutions </span>
+            My <span className="text-gradient">Work</span>
           </h1>
+
           <p className="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
-            A deep dive into the architectures I've built. Highlighting full-stack 
-            precision, architectural integrity, and elite user experiences.
+            Here are some of the projects I’ve worked on — focused on real-world
+            use cases, clean design, and performance.
           </p>
         </motion.div>
 
+        {/* PROJECTS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
