@@ -131,7 +131,7 @@ const handleSubmit = async (e) => {
     setShowSuccess(true);
     setTimeout(() => setShowSuccess(false), 5000);
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     toast.error("❌ Failed to send message. Try again later.");
   } finally {
     setIsSubmitting(false);

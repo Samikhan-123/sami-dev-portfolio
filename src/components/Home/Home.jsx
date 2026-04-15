@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import homeLogo from "../../Assets/home1.png";
 // import Home2 from "./Home2";
 import Type from "./Type";
@@ -57,19 +58,19 @@ function Home() {
 
               {/* 🔥 CTA BUTTONS (IMPORTANT) */}
               <div className="flex flex-wrap gap-4">
-                <a
-                  href="/contact"
-                  className="px-6 py-3 bg-sapphire text-white font-semibold rounded-xl shadow-lg hover:scale-105 transition"
+                <Link
+                  to="/contact"
+                  className="px-8 py-4 bg-sapphire text-white font-bold rounded-2xl shadow-xl shadow-sapphire/20 hover:shadow-sapphire/40 transition-all hover:scale-105 active:scale-95 flex items-center justify-center"
                 >
                   Let's Work Together
-                </a>
+                </Link>
 
-                <a
-                  href="/project"
-                  className="px-6 py-3 border border-white/10 text-white rounded-xl hover:bg-white/5 transition"
+                <Link
+                  to="/project"
+                  className="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-2xl hover:bg-white/10 transition-all hover:scale-105 active:scale-95 flex items-center justify-center backdrop-blur-sm"
                 >
                   View My Work
-                </a>
+                </Link>
               </div>
             </motion.div>
 
