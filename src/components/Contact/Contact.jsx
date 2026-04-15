@@ -101,8 +101,6 @@ const handleSubmit = async (e) => {
   try {
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const adminTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const autoReplyTemplateId = import.meta.env
-      .VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     const templateParams = {
@@ -112,14 +110,8 @@ const handleSubmit = async (e) => {
       message: formData.message,
     };
 
-    // Send emails
+    // Send email to admin
     await emailjs.send(serviceId, adminTemplateId, templateParams, publicKey);
-    await emailjs.send(
-      serviceId,
-      autoReplyTemplateId,
-      templateParams,
-      publicKey,
-    );
 
     // Success UX
     toast.success("🚀 Message sent successfully! I'll reply soon.");
