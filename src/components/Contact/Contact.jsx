@@ -22,6 +22,7 @@ const Contact = () => {
     email: "",
     subject: "",
     message: "",
+    company: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -166,10 +167,10 @@ const handleSubmit = async (e) => {
       link: "https://www.linkedin.com/in/muhammad-samiullah-khan-00323823a/",
     },
     { icon: <Twitter />, link: "https://twitter.com/SAMIIKHANNN" },
-    {
-      icon: <Instagram />,
-      link: "https://www.instagram.com/sami_khannn_?igsh=bDy0ZzVjbnJ0oNWFh",
-    },
+    // {
+    //   icon: <Instagram />,
+    //   link: "https://www.instagram.com/sami_khannn_?igsh=bDy0ZzVjbnJ0oNWFh",
+    // },
   ];
 
   return (

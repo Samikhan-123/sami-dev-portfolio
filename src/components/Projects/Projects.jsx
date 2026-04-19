@@ -11,7 +11,7 @@ function Projects() {
       description:
         "A modern developer portfolio built to showcase my work, skills, and projects. Designed with a focus on performance, clean UI, and smooth user experience, along with a fully functional contact system.",
       imgPath: "/sami-portfolio.png",
-      ghLink: "https://github.com/Samikhan-123/sami-dev-portfolio",
+      // ghLink: "https://github.com/Samikhan-123/sami-dev-portfolio",
       demoLink: "https://samikhan-dev.vercel.app",
       tags: ["React", "Tailwind", "Framer Motion", "EmailJS"],
       featured: true,
@@ -21,7 +21,7 @@ function Projects() {
       description:
         "A financial management web app focused on simplicity and usability. It helps users track transactions, manage records, and understand their financial flow through a clean and interactive interface.",
       imgPath: "/ApnaKhata.png",
-      ghLink: "https://github.com/Samikhan-123/apnakhata-client",
+      // ghLink: "https://github.com/Samikhan-123/apnakhata-client",
       demoLink: "https://apnakhata.online",
       tags: ["Next.js", "Tailwind", "Framer Motion", "Recharts"],
       featured: true,
@@ -29,9 +29,9 @@ function Projects() {
     {
       title: "ApnaKhata Backend System",
       description:
-        "The backend system that powers the ApnaKhata platform. It handles data processing, authentication, and secure transaction management with a clean and scalable architecture.",
+        "The backend system that powers the ApnaKhata platform. It handles data processing, authentication, and secure money management with a clean and scalable architecture.",
       imgPath: "/ApnaKhata-backend.png",
-      ghLink: "https://github.com/Samikhan-123/apnakhata-server",
+      // ghLink: "https://github.com/Samikhan-123/apnakhata-server",
       tags: ["Node.js", "Express", "Prisma", "PostgreSQL"],
       featured: false,
     },

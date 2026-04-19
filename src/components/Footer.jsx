@@ -8,9 +8,12 @@ function Footer() {
 
   const socialLinks = [
     { icon: <Github size={18} />, link: "https://github.com/Samikhan-123" },
-    { icon: <Linkedin size={18} />, link: "https://www.linkedin.com/in/muhammad-samiullah-khan-00323823a/" },
-    { icon: <Twitter size={18} />, link: "https://twitter.com/SAMIIKHANNN" },
-    { icon: <Instagram size={18} />, link: "https://www.instagram.com/sami_khannn_?igsh=bDy0ZzVjbnJ0oNWFh" },
+    {
+      icon: <Linkedin size={18} />,
+      link: "https://www.linkedin.com/in/muhammad-samiullah-khan-00323823a/",
+    },
+    { icon: <Twitter size={18} />, link: "https://twitter.com/samiiikkk1" },
+    // { icon: <Instagram size={18} />, link: "https://www.instagram.com/sami_khannn_?igsh=bDy0ZzVjbnJ0oNWFh" },
     { icon: <Mail size={18} />, link: "mailto:isamikhan.dev@gmail.com" },
   ];
 

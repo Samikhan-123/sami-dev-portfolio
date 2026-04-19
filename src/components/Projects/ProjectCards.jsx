@@ -53,7 +53,7 @@ function ProjectCards(props) {
         {/* ACTIONS */}
         <div className="flex items-center gap-4 mt-auto flex-wrap">
           {/* GitHub */}
-          <a
+          {/* <a
             href={props.ghLink}
             target="_blank"
             rel="noreferrer"
@@ -61,7 +61,7 @@ function ProjectCards(props) {
           >
             <Github size={18} />
             Code
-          </a>
+          </a> */}
 
           {/* Demo */}
           {props.demoLink && (
