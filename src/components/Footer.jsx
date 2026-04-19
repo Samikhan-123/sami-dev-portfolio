@@ -27,7 +27,7 @@ function Footer() {
             className="flex flex-col items-center md:items-start"
           >
             <h3 className="text-lg font-bold text-gradient uppercase tracking-tighter">Sami Khan</h3>
-            <p className="text-sm text-slate-500 mt-1">MERN Expert</p>
+            <p className="text-sm text-slate-500 mt-1">Full Stack Developer</p>
           </motion.div>
 
           <motion.div 
