@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Mail,
   Phone,
@@ -8,8 +8,6 @@ import {
   Github,
   Linkedin,
   Twitter,
-  Instagram,
-  CheckCircle,
 } from "lucide-react";
 import RetroGrid from "../ui/RetroGrid";
 import BackgroundBeams from "../ui/BackgroundBeams";
@@ -27,7 +25,6 @@ const Contact = () => {
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
 
   // =========================
   // HANDLE CHANGE
@@ -80,64 +77,66 @@ const Contact = () => {
   // =========================
   // HANDLE SUBMIT
   // =========================
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (!validateForm()) return;
+    if (!validateForm()) return;
 
-  // Honeypot
-  if (formData.company) return;
+    // Honeypot
+    if (formData.company) return;
 
-  // Rate limit
-  const lastSent = localStorage.getItem("lastEmailTime");
-  const now = Date.now();
+    // Rate limit
+    const lastSent = localStorage.getItem("lastEmailTime");
+    const now = Date.now();
 
-  if (lastSent && now - lastSent < 60000) {
-    toast("⏳ Please wait 1 minute before sending again.");
-    return;
-  }
+    if (lastSent && now - lastSent < 60000) {
+      toast("Please wait 1 minute before sending another message.", {
+        id: "contact-rate-limit",
+      });
+      return;
+    }
 
-  setIsSubmitting(true);
+    setIsSubmitting(true);
 
-  try {
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const adminTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const adminTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    const templateParams = {
-      from_name: formData.name,
-      from_email: formData.email,
-      subject: formData.subject,
-      message: formData.message,
-    };
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      };
 
-    // Send email to admin
-    await emailjs.send(serviceId, adminTemplateId, templateParams, publicKey);
+      // Send email to admin
+      await emailjs.send(serviceId, adminTemplateId, templateParams, publicKey);
 
-    // Success UX
-    toast.success("🚀 Message sent successfully! I'll reply soon.");
+      // Success UX
+      toast.success("Message sent successfully. I’ll reply shortly.", {
+        id: "contact-success",
+      });
 
-    // Rate limit set
-    localStorage.setItem("lastEmailTime", now);
+      // Rate limit set
+      localStorage.setItem("lastEmailTime", now);
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-      company: "",
-    });
-
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 5000);
-  } catch (error) {
-    // console.error(error);
-    toast.error("❌ Failed to send message. Try again later.");
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+        company: "",
+      });
+    } catch (error) {
+      toast.error("Failed to send message. Please try again later.", {
+        id: "contact-error",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const contactInfo = [
     {
@@ -263,20 +262,6 @@ const handleSubmit = async (e) => {
             className="lg:w-2/3"
           >
             <div className="glass-card p-10 rounded-[2rem] shadow-2xl border-white/5 relative overflow-hidden">
-              <AnimatePresence>
-                {showSuccess && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="absolute top-6 right-6 bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 px-6 py-3 rounded-2xl flex items-center gap-3 z-50 backdrop-blur-xl"
-                  >
-                    <CheckCircle size={20} />✅ Message sent! I'll reply within
-                    24 hours.
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
               {/* GLOBAL ERROR */}
               {errors.submit && (
                 <div className="text-red-400 bg-red-500/10 p-3 rounded-xl mb-4">
@@ -294,71 +279,109 @@ const handleSubmit = async (e) => {
                       onChange={handleChange}
                       className="hidden"
                     />
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">
+                    <label
+                      htmlFor="name"
+                      className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1"
+                    >
                       Your Name
                     </label>
                     <input
+                      id="name"
                       type="text"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Your Full Name"
+                      aria-invalid={Boolean(errors.name)}
+                      aria-describedby={errors.name ? "name-error" : undefined}
                       className="w-full bg-white/5 border border-white/5 focus:border-sapphire/50 rounded-2xl p-4 text-white"
                     />
                     {errors.name && (
-                      <p className="text-red-400 text-sm">{errors.name}</p>
+                      <p id="name-error" className="text-red-400 text-sm">
+                        {errors.name}
+                      </p>
                     )}
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">
+                    <label
+                      htmlFor="email"
+                      className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1"
+                    >
                       Your Email
                     </label>
                     <input
+                      id="email"
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="abc@gmail.com"
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={
+                        errors.email ? "email-error" : undefined
+                      }
                       className="w-full bg-white/5 border border-white/5 focus:border-sapphire/50 rounded-2xl p-4 text-white"
                     />
                     {errors.email && (
-                      <p className="text-red-400 text-sm">{errors.email}</p>
+                      <p id="email-error" className="text-red-400 text-sm">
+                        {errors.email}
+                      </p>
                     )}
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">
+                  <label
+                    htmlFor="subject"
+                    className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1"
+                  >
                     Subject
                   </label>
                   <input
+                    id="subject"
                     type="text"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
                     placeholder="Project Inquiry"
+                    aria-invalid={Boolean(errors.subject)}
+                    aria-describedby={
+                      errors.subject ? "subject-error" : undefined
+                    }
                     className="w-full bg-white/5 border border-white/5 focus:border-sapphire/50 rounded-2xl p-4 text-white"
                   />
                   {errors.subject && (
-                    <p className="text-red-400 text-sm">{errors.subject}</p>
+                    <p id="subject-error" className="text-red-400 text-sm">
+                      {errors.subject}
+                    </p>
                   )}
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">
+                  <label
+                    htmlFor="message"
+                    className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1"
+                  >
                     Message
                   </label>
                   <textarea
+                    id="message"
                     rows={6}
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Tell me about your project..."
+                    aria-invalid={Boolean(errors.message)}
+                    aria-describedby={
+                      errors.message ? "message-error" : undefined
+                    }
                     className="w-full bg-white/5 border border-white/5 focus:border-sapphire/50 rounded-2xl p-4 text-white"
                   />
                   {errors.message && (
-                    <p className="text-red-400 text-sm">{errors.message}</p>
+                    <p id="message-error" className="text-red-400 text-sm">
+                      {errors.message}
+                    </p>
                   )}
                 </div>
 

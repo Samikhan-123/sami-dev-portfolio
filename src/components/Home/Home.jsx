@@ -84,7 +84,9 @@ function Home() {
               <div className="absolute inset-0 bg-sapphire blur-[100px] opacity-20 hover:opacity-40 transition-opacity duration-1000" />
               <img
                 src={homeLogo}
-                alt="home pic"
+                alt="Sami Khan portrait"
+                loading="eager"
+                decoding="async"
                 className="relative z-10 max-h-[450px] drop-shadow-2xl"
                 style={{ animation: "float 6s ease-in-out infinite" }}
               />

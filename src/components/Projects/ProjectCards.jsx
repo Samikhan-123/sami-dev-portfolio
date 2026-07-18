@@ -19,7 +19,9 @@ function ProjectCards(props) {
       <div className="relative overflow-hidden aspect-video">
         <img
           src={props.imgPath}
-          alt={props.title}
+          alt={`${props.title} preview`}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100"
         />
 
@@ -69,6 +71,7 @@ function ProjectCards(props) {
               href={props.demoLink}
               target="_blank"
               rel="noreferrer"
+              aria-label={`Open live demo for ${props.title}`}
               className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sapphire text-white text-sm font-bold shadow-lg shadow-sapphire/20 hover:shadow-sapphire/40 group/btn transition-all relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700" />
